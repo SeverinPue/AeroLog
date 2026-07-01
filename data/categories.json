@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Camera"
+  },
+  {
+    "id": 2,
+    "name": "Drone"
+  },
+  {
+    "id": 3,
+    "name": "Batteries"
+  }
+]

@@ -5,6 +5,8 @@ import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import {FontAwesome5} from "@expo/vector-icons";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -17,31 +19,31 @@ export default function TabLayout() {
         tabBarButton: HapticTab,
       }}>
       <Tabs.Screen
-        name="map"
+        name="map/index"
         options={{
           title: 'Map',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="map.fill" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="checklist"
+        name="checklist/index"
         options={{
           title: 'Checklist',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="checklist" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="ferienplaner"
+        name="holidayplaner/index"
         options={{
-          title: 'Ferienplaner',
+          title: 'Holidayplaner',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="calendar" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="equipmantManager"
+        name="equipmantManager/index"
         options={{
           title: 'Equipment',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="wrench.fill" color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome5 name="wrench" size={24} color={color} />,
         }}
       />
     </Tabs>

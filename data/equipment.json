@@ -1,0 +1,228 @@
+[
+  {
+    "id": 1,
+    "name": "Sony ZV-E10",
+    "amount": 1,
+    "category": 1,
+    "bundles": [
+      4
+    ]
+  },
+  {
+    "id": 2,
+    "name": "GEPRC Mark 5",
+    "amount": 1,
+    "category": 2,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tattu R-Line 1600mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Tattu R-Line 1400mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 5,
+    "name": "BetaFpv 580mAh 1s",
+    "amount": 4,
+    "category": 3,
+    "bundles": [
+      3
+    ]
+  },{
+  "id": 1,
+  "name": "Sony ZV-E10",
+  "amount": 1,
+  "category": 1,
+  "bundles": [
+    4
+  ]
+},
+  {
+    "id": 2,
+    "name": "GEPRC Mark 5",
+    "amount": 1,
+    "category": 2,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tattu R-Line 1600mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Tattu R-Line 1400mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 5,
+    "name": "BetaFpv 580mAh 1s",
+    "amount": 4,
+    "category": 3,
+    "bundles": [
+      3
+    ]
+  },{
+  "id": 1,
+  "name": "Sony ZV-E10",
+  "amount": 1,
+  "category": 1,
+  "bundles": [
+    4
+  ]
+},
+  {
+    "id": 2,
+    "name": "GEPRC Mark 5",
+    "amount": 1,
+    "category": 2,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tattu R-Line 1600mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Tattu R-Line 1400mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 5,
+    "name": "BetaFpv 580mAh 1s",
+    "amount": 4,
+    "category": 3,
+    "bundles": [
+      3
+    ]
+  },{
+  "id": 1,
+  "name": "Sony ZV-E10",
+  "amount": 1,
+  "category": 1,
+  "bundles": [
+    4
+  ]
+},
+  {
+    "id": 2,
+    "name": "GEPRC Mark 5",
+    "amount": 1,
+    "category": 2,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tattu R-Line 1600mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Tattu R-Line 1400mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 5,
+    "name": "BetaFpv 580mAh 1s",
+    "amount": 4,
+    "category": 3,
+    "bundles": [
+      3
+    ]
+  },{
+  "id": 1,
+  "name": "Sony ZV-E10",
+  "amount": 1,
+  "category": 1,
+  "bundles": [
+    4
+  ]
+},
+  {
+    "id": 2,
+    "name": "GEPRC Mark 5",
+    "amount": 1,
+    "category": 2,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Tattu R-Line 1600mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Tattu R-Line 1400mAh 6S",
+    "amount": 2,
+    "category": 3,
+    "bundles": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 5,
+    "name": "BetaFpv 580mAh 1s",
+    "amount": 4,
+    "category": 3,
+    "bundles": [
+      3
+    ]
+  }
+]
