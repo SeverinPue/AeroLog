@@ -24,13 +24,7 @@ export default function TabLayout() {
                     tabBarIcon: ({color}) => <IconSymbol size={28} name="map.fill" color={color}/>,
                 }}
             />
-            <Tabs.Screen
-                name="checklist/index"
-                options={{
-                    title: 'Checklist',
-                    tabBarIcon: ({color}) => <IconSymbol size={28} name="checklist" color={color}/>,
-                }}
-            />
+
             <Tabs.Screen
                 name="holidayplaner"
                 options={{

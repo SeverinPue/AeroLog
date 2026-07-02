@@ -12,7 +12,7 @@ Systematische und einfache Vorgehensweise zum Testen der AeroLog-Funktionen.
   - "Weltweite Flugverbotszonen" einschalten -> Prüfen, ob zusätzliche Luftraum-Zonen geladen werden.
 
 ## 2. Wegpunkte (Erstellen, Bearbeiten, Löschen)
-- **Konzept:** Lokale Speicherung von Drohnenspots.
+- **Concept:** Lokale Speicherung von Drohnenspots.
 - **Testen:**
   - Lang auf eine beliebige Stelle auf der Karte drücken.
   - Name, Beschreibung eingeben, Kategorie wählen und speichern.
@@ -42,3 +42,11 @@ Systematische und einfache Vorgehensweise zum Testen der AeroLog-Funktionen.
   - **Akkualterung:** Neues Equipment erstellen, Haken bei "Akkulaufzeit berechnen" setzen. Ein Kaufdatum wählen, das z. B. 5 Monate zurückliegt. Prüfen, ob die Lebensdauer bei 90% liegt (2% Abzug pro Monat) und die Farbe von weiß auf grün wechselt.
   - **Ladezustand:** Auf das Akku-Icon tippen (wechselt von voll auf leer).
   - **Storage:** Das Akku-Icon gedrückt halten -> Prüfen, ob es auf "Storage" (halbe blaue Batterie) wechselt.
+
+## 6. Ferienplaner (Holiday Planner)
+- **Konzept:** Erstellen von Reisen mit automatischer, dynamischer Packliste basierend auf Drohnen-Bundles.
+- **Testen:**
+  - **Reise hinzufügen:** Auf das "+" Symbol im Ferienplaner tippen, Ort eingeben, Startdatum wählen, mindestens ein Bundle auswählen (z. B. "Freestyle Drone") und speichern.
+  - **Packliste abhaken:** Auf die erstellte Reisekarte tippen -> Die Checkliste öffnet sich mit allen Equipment-Gegenständen dieses Typs. Checkboxen aktivieren.
+  - **Persistenz:** Details verlassen, App schließen/neu starten und die Reise erneut öffnen -> Die abgehakten Elemente müssen weiterhin markiert sein.
+  - **Reise löschen:** Auf das Mülleimer-Symbol der Reisekarte tippen -> Prüfen, ob die Reise gelöscht wird.

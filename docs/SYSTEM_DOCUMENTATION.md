@@ -1,11 +1,11 @@
 # Systemdokumentation: AeroLog
 
-AeroLog ist ein kompakter Begleiter für Drohnenpiloten zur Verwaltung von Flugspots und Equipment.
+AeroLog ist ein kompakter Begleiter für Drohnenpiloten zur Verwaltung von Flugspots, Drohnen-Equipment und zur Planung von Reisen (Ferienplaner).
 
 ---
 
 ## 1. Grundkonzept
-Die App hilft Drohnenpiloten, ihre Spots auf einer interaktiven Karte zu verwalten (inkl. Flugverbotszonen und Live-Wetter) und den Zustand ihrer Akkus (Ladezustand, Alterung) zu überwachen.
+Die App hilft Drohnenpiloten, ihre Spots auf einer interaktiven Karte zu verwalten (inkl. Flugverbotszonen und Live-Wetter), den Zustand ihrer Akkus (Ladezustand, Alterung) zu überwachen und Packlisten für anstehende Drohnenreisen (Ferien) zu erstellen.
 
 ---
 
@@ -34,3 +34,8 @@ Die App hilft Drohnenpiloten, ihre Spots auf einer interaktiven Karte zu verwalt
   - *Voll* (grün/weiß)
   - *Leer* (rot/weiß)
   - *Storage / Lagerspannung* (blau, ideal für die Aufbewahrung von LiPo-Akkus).
+
+### 3.3 Ferienplaner (Holiday Planner)
+- **Reiseverwaltung:** Anlegen von neuen Drohnenreisen mit Reiseziel, Startdatum und zugewiesenen Drohnen-Bundles (z. B. Freestyle Drone, Cine Drone).
+- **Dynamische Packliste:** Generiert automatisch eine interaktive Checkliste mit allen Ausrüstungsgegenständen aus den ausgewählten Bundles.
+- **Status-Speicherung:** Der Erledigungsstatus der gepackten Gegenstände wird in Echtzeit in `AsyncStorage` persistiert, sodass der Pilot beim Kofferpacken den Fortschritt nicht verliert.
