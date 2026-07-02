@@ -3,7 +3,7 @@ import {Animated, Pressable, StyleSheet, TextInput} from 'react-native';
 import {ThemedText} from '@/components/themed-text';
 import {ThemedView} from '@/components/themed-view';
 
-import {FontAwesome, Ionicons} from "@expo/vector-icons";
+import {FontAwesome, Ionicons, MaterialCommunityIcons} from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {ChargeState, Item} from "@/data/types/equipmentItem";
 import {useEffect, useState} from "react";
@@ -163,16 +163,16 @@ export default function EquipmentManager() {
                         }}>Equipment</ThemedText>
                         {edit ?
                             <ThemedView style={styles.rowContainer}>
-                                <Pressable style={styles.iconButton} onPress={() => setAdd(true)}>
-                                    <Ionicons name="add" size={24} color="black"/>
+                                <Pressable onPress={() => setAdd(true)}>
+                                    <Ionicons name="add-circle" size={48} color="white" />
                                 </Pressable>
-                                <Pressable style={styles.iconButton} onPress={() => setEdit(false)}>
-                                    <Ionicons name="checkmark" size={24} color="black"/>
+                                <Pressable onPress={() => setEdit(false)}>
+                                    <Ionicons name="checkmark-circle" size={48} color="white" />
                                 </Pressable>
                             </ThemedView>
                             :
-                            <Pressable style={styles.iconButton} onPress={() => setEdit(true)}>
-                                <Ionicons name="pencil-sharp" size={24} color="black"/>
+                            <Pressable onPress={() => setEdit(true)}>
+                                <MaterialCommunityIcons name="pencil-circle" size={48} color="white" />
                             </Pressable>
                         }
                     </ThemedView>

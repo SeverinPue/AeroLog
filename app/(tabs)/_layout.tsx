@@ -60,10 +60,10 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
-                name="holidayplaner/index"
+                name="holidayplaner"
                 options={{
                     title: 'Holidayplaner',
-                    tabBarIcon: ({color}) => <IconSymbol size={28} name="calendar" color={color}/>,
+                    tabBarIcon: ({color}) => <FontAwesome5 name="umbrella-beach" size={24} color={color} />,
                 }}
             />
             <Tabs.Screen

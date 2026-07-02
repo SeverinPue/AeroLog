@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     form: {
         width: "100%",
         marginTop: 20,
+        gap: 20,
     },
     inputPair: {
         width: "100%",
