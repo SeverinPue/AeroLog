@@ -1,10 +1,6 @@
 import {Tabs} from 'expo-router';
-import React, {useEffect} from 'react';
+import React from 'react';
 
-import categoriesList from '@/data/categories.json';
-import equipmentList from '@/data/equipment.json';
-import bundlesList from '@/data/bundles.json';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
@@ -13,30 +9,6 @@ import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function TabLayout() {
     const colorScheme = useColorScheme();
-
-    useEffect(() => {
-        const loadExampleEquipment = async () => {
-            const stored = await AsyncStorage.getItem("equipment");
-            if (!stored) {
-                await AsyncStorage.setItem("equipment", JSON.stringify(equipmentList));
-            }
-        };
-        const loadExampleCategories = async () => {
-            const stored = await AsyncStorage.getItem("categories");
-            if (!stored) {
-                await AsyncStorage.setItem("categories", JSON.stringify(categoriesList));
-            }
-        };
-        const loadExampleBundles = async () => {
-            const stored = await AsyncStorage.getItem("bundles");
-            if (!stored) {
-                await AsyncStorage.setItem("bundles", JSON.stringify(bundlesList));
-            }
-        };
-        loadExampleEquipment();
-        loadExampleCategories();
-        loadExampleBundles();
-    }, []);
 
     return (
         <Tabs

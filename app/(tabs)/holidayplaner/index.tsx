@@ -11,7 +11,7 @@ import HolidayCard from "@/components/holiday-card";
 import {CategoryBundle} from "@/data/types/categoryBundle";
 import ScrollView = Animated.ScrollView;
 
-export default function FerienplanerScreen() {
+export default function HolidayPlaner() {
     const [holidays, setHolidays] = useState<Holiday[]>([])
     const [bundles, setBundles] = useState<CategoryBundle[]>([]);
     const [add, setAdd] = useState<boolean>(false);
@@ -55,10 +55,7 @@ export default function FerienplanerScreen() {
                 :
                 <>
                     <ThemedView style={styles.header}>
-                        <ThemedText type="title" onPress={async () => {/* TODO REMOVEEEE */
-                            await AsyncStorage.removeItem("bundles")
-                            await AsyncStorage.removeItem("holidays")
-                        }}>Holiday Planner</ThemedText>
+                        <ThemedText type="title">Holiday Planner</ThemedText>
                         <Pressable onPress={() => setAdd(true)}>
                             <Ionicons name="add-circle" size={48} color="white" />
                         </Pressable>

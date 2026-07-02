@@ -21,6 +21,7 @@ export default function HolidayInput({onSubmit, onCancel}: HolidayInputProps) {
         bundles: [],
         location: "",
     })
+    const [holidays, setHolidays] = useState<Holiday[]>([])
     const [bundles, setBundles] = useState<CategoryBundle[]>([])
     const [equipment, setEquipment] = useState<Item[]>([])
     const [add, setAdd] = useState<boolean>(false)
@@ -41,6 +42,13 @@ export default function HolidayInput({onSubmit, onCancel}: HolidayInputProps) {
                 setEquipment(JSON.parse(saved))
             }
         }
+        const loadHolidays = async () => {
+            const stored = await AsyncStorage.getItem("holidays");
+            if (stored) {
+                setHolidays(JSON.parse(stored));
+            }
+        };
+        loadHolidays();
         loadBundles()
         loadEquipment()
     }, [])
@@ -82,6 +90,20 @@ export default function HolidayInput({onSubmit, onCancel}: HolidayInputProps) {
         setNewBundleItems([])
     }
 
+    const removeBundle = async (bundleId: number) => {
+        const updated = bundles.filter(bundle => bundle.id !== bundleId)
+        setBundles(updated)
+        await AsyncStorage.setItem("bundles", JSON.stringify(updated))
+        setHoliday({...holiday, bundles: holiday.bundles.filter(b => b !== bundleId)})
+
+        const updatedEquipment = equipment.map(item => ({
+            ...item,
+            bundles: item.bundles.filter(b => b !== bundleId)
+        }))
+        setEquipment(updatedEquipment)
+        await AsyncStorage.setItem("equipment", JSON.stringify(updatedEquipment))
+    }
+
     return (
         <ThemedView style={styles.outtestContainer}>
             <ThemedText type="title">Add new holiday</ThemedText>
@@ -111,7 +133,7 @@ export default function HolidayInput({onSubmit, onCancel}: HolidayInputProps) {
                                 selectBundle(selected.id)
                             }
                         />
-                        <Pressable onPress={() => setEdit(true)}>
+                        <Pressable onPress={() => setEdit(!edit)}>
                             <Ionicons name="pencil-sharp" size={24} color="white"/>
                         </Pressable>
                         <Pressable onPress={() => setAdd(true)}>
@@ -155,14 +177,19 @@ export default function HolidayInput({onSubmit, onCancel}: HolidayInputProps) {
                         </ThemedView>
                     }
                     {edit &&
-                        <ThemedView style={{flexWrap: "wrap"}}>
-                            {bundles.filter(bundle => !equipment.some(item => item.bundles.includes(bundle.id))).map(bundle => (
-                                <ThemedView key={bundle.id} style={styles.bundleEdit}>
-                                    <ThemedText>{bundle.name}</ThemedText>
-                                    <Ionicons name="trash" size={24} color="white"/>
-                                </ThemedView>
-                            ))}
-                        </ThemedView>
+                        <>
+                            <ThemedView style={styles.separator} />
+                            <ThemedText>{bundles.filter(bundle => !holidays.some(h => h.bundles.includes(bundle.id))).length < 1 && "No"} Removable Bundles</ThemedText>
+                            <ThemedView style={styles.selectedMultiDropdown}>
+                                {bundles.filter(bundle => !holidays.some(h => h.bundles.includes(bundle.id))).map(bundle => (
+                                    <ThemedView key={bundle.id} style={styles.bundleEdit}>
+                                        <ThemedText>{bundle.name}</ThemedText>
+                                        <Ionicons name="trash" size={24} color="white" onPress={() => removeBundle(bundle.id)}/>
+                                    </ThemedView>
+                                ))}
+                            </ThemedView>
+                            <ThemedView style={styles.separator} />
+                        </>
                     }
                     <ThemedView style={styles.selectedMultiDropdown}>
                         {holiday.bundles.map(bundleId => (
@@ -280,6 +307,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#2D2D2D",
         borderRadius: 3,
         padding: 4,
+        margin: 4,
         gap: 4,
+    },
+    separator: {
+        height: 1,
+        backgroundColor: "#555",
+        marginVertical: 10,
     },
 });

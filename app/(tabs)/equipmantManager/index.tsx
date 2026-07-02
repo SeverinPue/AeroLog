@@ -157,10 +157,7 @@ export default function EquipmentManager() {
                 :
                 <>
                     <ThemedView style={styles.header}>
-                        <ThemedText type="title" onPress={async () => {/* TODO REMOVEEEE */
-                            await AsyncStorage.removeItem("equipment")
-                            await AsyncStorage.removeItem("categories")
-                        }}>Equipment</ThemedText>
+                        <ThemedText type="title">Equipment</ThemedText>
                         {edit ?
                             <ThemedView style={styles.rowContainer}>
                                 <Pressable onPress={() => setAdd(true)}>
