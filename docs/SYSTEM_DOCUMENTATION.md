@@ -31,8 +31,8 @@ Die App hilft Drohnenpiloten, ihre Spots auf einer interaktiven Karte zu verwalt
 ### 3.2 Equipment-Manager
 - **Akku-Lebensdauer (Battery Life):** Berechnet automatisch einen Abzug von **2% pro Monat** seit dem Kaufdatum.
 - **Ladezustand (Charge State):** Trackt den Zustand der Akkus:
-  - *Voll* (grün/weiß)
-  - *Leer* (rot/weiß)
+  - *Voll* (weiß)
+  - *Leer* (weiß)
   - *Storage / Lagerspannung* (blau, ideal für die Aufbewahrung von LiPo-Akkus).
 
 ### 3.3 Ferienplaner (Holiday Planner)
