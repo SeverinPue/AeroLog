@@ -4,12 +4,12 @@ import React, {useEffect} from 'react';
 import categoriesList from '@/data/categories.json';
 import equipmentList from '@/data/equipment.json';
 import bundlesList from '@/data/bundles.json';
-import {HapticTab} from '@/components/haptic-tab';
-import {IconSymbol} from '@/components/ui/icon-symbol';
-import {Colors} from '@/constants/theme';
-import {useColorScheme} from '@/hooks/use-color-scheme';
-import {FontAwesome5} from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { HapticTab } from '@/components/haptic-tab';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { Colors } from '@/constants/theme';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function TabLayout() {
     const colorScheme = useColorScheme();
