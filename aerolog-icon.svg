@@ -1,0 +1,45 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#173A5C"/>
+      <stop offset="100%" stop-color="#0B1E33"/>
+    </linearGradient>
+    <radialGradient id="ping" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#34D399" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#34D399" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- App icon background -->
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- subtle flight-path arc -->
+  <path d="M90,340 C160,300 190,240 220,200" fill="none" stroke="#1C7ED6" stroke-width="4" stroke-dasharray="2 14" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- GPS ping glow at pin tip -->
+  <circle cx="256" cy="404" r="46" fill="url(#ping)"/>
+  <circle cx="256" cy="404" r="7" fill="#34D399"/>
+
+  <!-- Pin body -->
+  <path d="M256,398
+           C256,398 146,292 146,210
+           A110,110 0 1,1 366,210
+           C366,292 256,398 256,398 Z"
+        fill="#F4F8FA"/>
+
+  <!-- Drone silhouette inside pin -->
+  <g stroke="#1C7ED6" stroke-width="10" stroke-linecap="round">
+    <line x1="256" y1="210" x2="304" y2="162"/>
+    <line x1="256" y1="210" x2="208" y2="162"/>
+    <line x1="256" y1="210" x2="304" y2="258"/>
+    <line x1="256" y1="210" x2="208" y2="258"/>
+  </g>
+  <g>
+    <circle cx="304" cy="162" r="19" fill="#1C7ED6" stroke="#F4F8FA" stroke-width="4"/>
+    <circle cx="208" cy="162" r="19" fill="#1C7ED6" stroke="#F4F8FA" stroke-width="4"/>
+    <circle cx="304" cy="258" r="19" fill="#1C7ED6" stroke="#F4F8FA" stroke-width="4"/>
+    <circle cx="208" cy="258" r="19" fill="#1C7ED6" stroke="#F4F8FA" stroke-width="4"/>
+  </g>
+  <!-- hub -->
+  <rect x="256" y="210" width="34" height="34" rx="6" fill="#F2994A" stroke="#F4F8FA" stroke-width="3" transform="rotate(45 256 210)"/>
+</svg>
