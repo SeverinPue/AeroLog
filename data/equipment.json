@@ -22,6 +22,8 @@
     "name": "Tattu R-Line 1600mAh 6S",
     "amount": 2,
     "category": 3,
+    "dateBought": "2025-06-01",
+    "chargeState": "FULL",
     "bundles": [
       1
     ]
@@ -31,6 +33,8 @@
     "name": "Tattu R-Line 1400mAh 6S",
     "amount": 2,
     "category": 3,
+    "dateBought": "2025-06-01",
+    "chargeState": "STORAGE",
     "bundles": [
       1,
       2
@@ -41,6 +45,8 @@
     "name": "BetaFpv 580mAh 1s",
     "amount": 4,
     "category": 3,
+    "dateBought": "2025-06-01",
+    "chargeState": "EMPTY",
     "bundles": [
       3
     ]

@@ -3,13 +3,13 @@ import {Animated, Pressable, StyleSheet, TextInput} from 'react-native';
 import {ThemedText} from '@/components/themed-text';
 import {ThemedView} from '@/components/themed-view';
 
-import {Ionicons} from "@expo/vector-icons";
+import {FontAwesome, Ionicons} from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {Item} from "@/data/types/equipmentItem";
+import {ChargeState, Item} from "@/data/types/equipmentItem";
 import {useEffect, useState} from "react";
-import ScrollView = Animated.ScrollView;
 import ItemInput from "@/components/item-input";
 import {CategoryBundle} from "@/data/types/categoryBundle";
+import ScrollView = Animated.ScrollView;
 
 export default function EquipmentManager() {
     const [equipment, setEquipment] = useState<Item[]>([]);
@@ -67,8 +67,18 @@ export default function EquipmentManager() {
         setNewName(undefined)
     }
 
-    const saveNewEquipment = async (item: Omit<Item, "id">) => {
-        const updated = [...equipment, {...item, id: equipment.length + 1}];
+    const saveNewEquipment = async (item: Omit<Item, "id" | "dateBought" | "chargeState">, calculateBatterLife: boolean) => {
+        let updated;
+        if (calculateBatterLife) {
+            updated = [...equipment, {
+                ...item,
+                id: equipment.length + 1,
+                dateBought: new Date().toDateString(),
+                chargeState: ChargeState.STORAGE
+            }];
+        } else {
+            updated = [...equipment, {...item, id: equipment.length + 1, dateBought: undefined, chargeState: undefined}]
+        }
         setEquipment(updated);
         await AsyncStorage.setItem("equipment", JSON.stringify(updated));
         const stored = await AsyncStorage.getItem("categories");
@@ -78,10 +88,72 @@ export default function EquipmentManager() {
         setAdd(false)
     }
 
+    const getBatteryLife = (dateBought: string | undefined): number => {
+        if (!dateBought) return 0;
+        const batteryLife = 100 - 2 * ((new Date().getFullYear() - new Date(dateBought).getFullYear()) * 12 + (new Date().getMonth() - new Date(dateBought).getMonth())) // Formel von AI -> für jeden Monat 2% abzug von 100% battery life
+        if (batteryLife < 0) return 0;
+        return batteryLife;
+    }
+
+    const getBatteryLifeColor = (batteryLife: number) => {
+        let color: string;
+        if (batteryLife > 90) {
+            color = "white";
+        } else if (batteryLife > 75) {
+            color = "green";
+        } else if (batteryLife > 50) {
+            color = "orange";
+        } else {
+            color = "red";
+        }
+        return (
+            <ThemedText style={{color: color}}>{batteryLife}%</ThemedText>
+        )
+    }
+
+    const getChargeState = (chargeState: ChargeState) => {
+        switch (chargeState) {
+            case ChargeState.FULL:
+                return <FontAwesome name="battery-full" size={24} color="white"/>;
+            case ChargeState.EMPTY:
+                return <FontAwesome name="battery-empty" size={24} color="white"/>;
+            case ChargeState.STORAGE:
+                return <FontAwesome name="battery-half" size={24} color="#3293a8"/>;
+            default:
+                return null;
+        }
+    }
+
+    const toggleChargeState = (id: number) => {
+        const updated = equipment.map(item => {
+            if (item.id === id) {
+                switch (item.chargeState) {
+                    case ChargeState.FULL:
+                        return {...item, chargeState: ChargeState.EMPTY};
+                    case ChargeState.EMPTY:
+                        return {...item, chargeState: ChargeState.FULL};
+                    case ChargeState.STORAGE:
+                        return {...item, chargeState: ChargeState.FULL};
+                    default:
+                        return item;
+                }
+            }
+            return item;
+        });
+        setEquipment(updated);
+        AsyncStorage.setItem("equipment", JSON.stringify(updated));
+    };
+
+    const toggleStorageChargeState = (id: number) => {
+        const updated = equipment.map(item => item.id === id ? {...item, chargeState: ChargeState.STORAGE} : item)
+        setEquipment(updated);
+        AsyncStorage.setItem("equipment", JSON.stringify(updated));
+    }
+
     return (
         <ThemedView style={styles.outtestContainer}>
-            { add && edit ?
-                <ItemInput onSubmit={saveNewEquipment} onCancel={() => setAdd(false)} />
+            {add && edit ?
+                <ItemInput onSubmit={saveNewEquipment} onCancel={() => setAdd(false)}/>
                 :
                 <>
                     <ThemedView style={styles.header}>
@@ -89,7 +161,7 @@ export default function EquipmentManager() {
                             await AsyncStorage.removeItem("equipment")
                             await AsyncStorage.removeItem("categories")
                         }}>Equipment</ThemedText>
-                        { edit ?
+                        {edit ?
                             <ThemedView style={styles.rowContainer}>
                                 <Pressable style={styles.iconButton} onPress={() => setAdd(true)}>
                                     <Ionicons name="add" size={24} color="black"/>
@@ -109,7 +181,7 @@ export default function EquipmentManager() {
                             <ThemedView key={category.id}>
                                 <ThemedView style={{flexDirection: "row", gap: 10}}>
                                     <ThemedText style={styles.categoryTitle}>{category.name}</ThemedText>
-                                    { equipment.filter(equipment => equipment.category === category.id).length === 0 &&
+                                    {equipment.filter(equipment => equipment.category === category.id).length === 0 &&
                                         <Ionicons name="trash" size={22} color="white"
                                                   onPress={() => removeCategory(category.id)}/>
                                     }
@@ -118,7 +190,7 @@ export default function EquipmentManager() {
                                     .filter(equipment => equipment.category === category.id)
                                     .map(equipment => (
                                         <ThemedView key={equipment.id}>
-                                            { edit ?
+                                            {edit ?
                                                 <>
                                                     <ThemedView style={styles.item}>
                                                         <ThemedText style={styles.itemName}
@@ -137,9 +209,11 @@ export default function EquipmentManager() {
                                                     </ThemedView>
                                                     <ThemedView>
                                                         {showInput === equipment.id &&
-                                                            <TextInput style={styles.input} defaultValue={equipment.name}
+                                                            <TextInput style={styles.input}
+                                                                       defaultValue={equipment.name}
                                                                        autoFocus={true}
-                                                                       placeholder="Enter new name..." placeholderTextColor="#888"
+                                                                       placeholder="Enter new name..."
+                                                                       placeholderTextColor="#888"
                                                                        onChangeText={value => setNewName(value)}
                                                                        onEndEditing={() => saveNewName(equipment.id)}/>
                                                         }
@@ -148,8 +222,19 @@ export default function EquipmentManager() {
                                                 :
                                                 <>
                                                     <ThemedView style={styles.item}>
-                                                        <ThemedText style={styles.itemName}>{equipment.name}</ThemedText>
+                                                        <ThemedText
+                                                            style={styles.itemName}>{equipment.name}</ThemedText>
                                                         <ThemedView style={styles.itemAddons}>
+                                                            {equipment.dateBought &&
+                                                                getBatteryLifeColor(getBatteryLife(equipment.dateBought))
+                                                            }
+                                                            {equipment.chargeState &&
+                                                                <Pressable
+                                                                    onPress={() => toggleChargeState(equipment.id)}
+                                                                    onLongPress={() => toggleStorageChargeState(equipment.id)}>
+                                                                    {getChargeState(equipment.chargeState)}
+                                                                </Pressable>
+                                                            }
                                                             <ThemedText>{equipment.amount}</ThemedText>
                                                         </ThemedView>
                                                     </ThemedView>

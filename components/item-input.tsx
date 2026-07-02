@@ -7,19 +7,21 @@ import {Dropdown} from "react-native-element-dropdown";
 import {Ionicons} from "@expo/vector-icons";
 import {CategoryBundle} from "@/data/types/categoryBundle";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Checkbox} from "expo-checkbox";
 
 type ItemInputProps = {
-    onSubmit: (item: Omit<Item, "id">) => void
+    onSubmit: (item: Omit<Item, "id" | "dateBought" | "chargeState">, calculateBatteryLife: boolean) => void
     onCancel: () => void
 };
 
 export default function ItemInput({onSubmit, onCancel}: ItemInputProps) {
-    const [item, setItem] = useState<Omit<Item, "id">>({
+    const [item, setItem] = useState<Omit<Item, "id" | "dateBought" | "chargeState">>({
         name: "",
         category: 0,
         amount: 0,
         bundles: []
     });
+    const [calculateBatterLife, setCalculateBatteryLife] = useState(false)
     const [categories, setCategories] = useState<CategoryBundle[]>([])
     const [add, setAdd] = useState<boolean>(false)
     const [newCategory, setNewCategory] = useState<string>()
@@ -100,10 +102,18 @@ export default function ItemInput({onSubmit, onCancel}: ItemInputProps) {
                         keyboardType="numeric"
                         onChangeText={value => setItem({...item, amount: Number(value)})}/>
                 </ThemedView>
+                <ThemedView style={{flexDirection: "row", alignItems: "center", gap: 10, marginTop: 10}}>
+                    <Checkbox
+                        value={calculateBatterLife}
+                        onValueChange={setCalculateBatteryLife}
+                        color={calculateBatterLife ? '#555' : undefined}
+                    />
+                    <ThemedText>Calculate Battery Life</ThemedText>
+                </ThemedView>
             </ThemedView>
             <ThemedView style={styles.rowContainer}>
                 <Button title={"Cancel"} onPress={onCancel}/>
-                <Button title={"Save"} onPress={() => onSubmit(item)}/>
+                <Button title={"Save"} onPress={() => onSubmit(item, calculateBatterLife)}/>
             </ThemedView>
         </ThemedView>
     )
