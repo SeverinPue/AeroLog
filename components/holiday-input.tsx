@@ -155,9 +155,9 @@ export default function HolidayInput({onSubmit, onCancel}: HolidayInputProps) {
                         </ThemedView>
                     }
                     {edit &&
-                        <ThemedView>
+                        <ThemedView style={{flexWrap: "wrap"}}>
                             {bundles.filter(bundle => !equipment.some(item => item.bundles.includes(bundle.id))).map(bundle => (
-                                <ThemedView key={bundle.id} style={[styles.selectedMultiDropdownItem, {flexDirection: "row", padding: 10}]}>
+                                <ThemedView key={bundle.id} style={styles.bundleEdit}>
                                     <ThemedText>{bundle.name}</ThemedText>
                                     <Ionicons name="trash" size={24} color="white"/>
                                 </ThemedView>
@@ -274,5 +274,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#2D2D2D",
         padding: 10,
         borderRadius: 10,
-    }
+    },
+    bundleEdit: {
+        flexDirection: "row",
+        backgroundColor: "#2D2D2D",
+        borderRadius: 3,
+        padding: 4,
+        gap: 4,
+    },
 });
